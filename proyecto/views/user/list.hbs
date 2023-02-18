@@ -1,0 +1,20 @@
+<h1>USERS LIST</h1>
+
+<div class="container">
+
+    {{#each users}}
+    <div class="card" style="width: 18rem;">
+        <img src="{{profileImg}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">{{username}}</p>
+            <p class="card-text">{{email}}</p>
+            <p class="card-text">{{role}}</p>
+            <a href="/user/edit/{{id}}" class="btn btn-primary">EDITAR</a>
+        </div>
+    </div>
+    {{/each}}
+
+    <p>{{username}}</p>
+
+
+</div>
