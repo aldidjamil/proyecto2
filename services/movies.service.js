@@ -12,23 +12,23 @@ class ApiServiceTheaters {
     }
 
     getAllMovies() {
-        return this.api.get('/Top250Movies/k_u3ip6m56').then(response => response.data.items)
+        return this.api.get('/Top250Movies/k_ny43v8j8').then(response => response.data.items)
     }
 
     getInTheaters() {
-        return this.api.get(`/InTheaters/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/InTheaters/k_ny43v8j8`).then(response => response.data.items)
     }
 
     getMostPopular() {
-        return this.api.get(`/MostPopularMovies/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/MostPopularMovies/k_ny43v8j8`).then(response => response.data.items)
     }
 
     getComingSoon() {
-        return this.api.get(`/ComingSoon/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/ComingSoon/k_ny43v8j8`).then(response => response.data.items)
     }
 
-    getDetails(movieId) {
-        return this.api.get(`/Top250Movies/k_u3ip6m56${movieId}`).then(response => response.data.items)
+    getMovieById(movieId) {
+        return this.api.get(`/Title/k_ny43v8j8/${movieId}`).then(response => response.data)
     }
 
 

@@ -12,6 +12,7 @@ router.get("/", (req, res, next) => {
     res.render("index");
 });
 
+
 router.get("/250-movies", (req, res, next) => {
 
 
@@ -24,7 +25,7 @@ router.get("/250-movies", (req, res, next) => {
         })
         // .then(response => console.log(response.data))
         // .then(response => console.log(response))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 router.get("/inTheaters", (req, res, next) => {
@@ -57,6 +58,18 @@ router.get("/comingSoon", (req, res, next) => {
             // res.json(movies)
             res.render("movies/movieRender", { movies })
         })
+})
+
+
+
+router.get('/details/:id', (req, res) => {
+    const { id } = req.params
+
+    moviesApi
+        .getMovieById(id)
+        //.then(movie => console.log({ movie }))
+        .then(movie => res.render('movies/details', { movie }))
+        .catch(err => next(err))
 })
 
 module.exports = router;

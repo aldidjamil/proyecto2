@@ -47,7 +47,7 @@ router.post("/login-form", (req, res, next) => {
                 res.render('auth/login-form', { errorMessage: 'Datos incorrectos (es la pwd...)' })
             }
             else {
-                req.session.currentUser = user                // ESTO ES INICIAR SESIÓN
+                req.session.currentUser = user
                 console.log('ESTO ES EL OBJETO req.session --->', req.session)
                 res.redirect('/')
             }
