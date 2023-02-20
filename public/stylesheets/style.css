@@ -51,3 +51,9 @@ h1 {
 .container {
   color: whitesmoke;
 }
+
+ul,
+li {
+  list-style: none;
+
+}
