@@ -20,12 +20,12 @@ const userSchema = new Schema(
       default: 'https://i.stack.imgur.com/l60Hf.png'
     },
     favoriteMovies: [{
-      ref: 'Movie',
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
+      ref: 'Movie'
     }],
     watchList: [{
-      ref: 'Movie',
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
+      ref: 'Movie'
     }],
     role: {
       type: String,

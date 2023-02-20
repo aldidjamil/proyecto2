@@ -18,10 +18,9 @@ POST         | `/user/delete/:id`          | Delete user                     |
 GET          | `/comment/create`           | New comment form render         |
 POST         | `/comment/create`           | New comment form handler        |
 POST         | `/comment/delete`           | New comment form handler        |
-GET          | `/api/movies`               | List of all movies              | YES
+GET          | `/api/movies`               | List best 250 movies            | YES
 GET          | `/api/movies/details/:id`   | Movie details                   | YES
 GET          | `/api/movies/MostPopular`   | Movie details                   | YES
-GET          | `/api/movies/250best`       | Movie details                   | YES
 GET          | `/api/movies/inTheaters`    | Movie details                   | YES
 
 
