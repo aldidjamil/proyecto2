@@ -22,7 +22,7 @@ router.get("/list-users", isLoggedIn, checkRole('USER', 'ADMIN'), (req, res, nex
 
 })
 
-router.get("/edit/:id", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+router.get("/edit/:id", isLoggedIn, (req, res, next) => {
     const { id } = req.params
 
     User
@@ -32,7 +32,7 @@ router.get("/edit/:id", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 
 })
 
-router.post('/edit/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+router.post('/edit/:id', isLoggedIn, (req, res, next) => {
     console.log('hola')
     const { username, email, profileImg, id } = req.body
 

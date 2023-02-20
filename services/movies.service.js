@@ -1,4 +1,4 @@
-// // https://imdb-api.com/en/API/InTheaters/k_u3ip6m56
+// // https://imdb-api.com/en/API/InTheaters/k_t1dvkm4d
 
 
 const axios = require('axios')
@@ -12,23 +12,23 @@ class ApiServiceTheaters {
     }
 
     getAllMovies() {
-        return this.api.get('/Top250Movies/k_u3ip6m56').then(response => response.data.items)
+        return this.api.get('/Top250Movies/k_t1dvkm4d').then(response => response.data.items)
     }
 
     getInTheaters() {
-        return this.api.get(`/InTheaters/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/InTheaters/k_t1dvkm4d`).then(response => response.data.items)
     }
 
     getMostPopular() {
-        return this.api.get(`/MostPopularMovies/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/MostPopularMovies/k_t1dvkm4d`).then(response => response.data.items)
     }
 
     getComingSoon() {
-        return this.api.get(`/ComingSoon/k_u3ip6m56`).then(response => response.data.items)
+        return this.api.get(`/ComingSoon/k_t1dvkm4d`).then(response => response.data.items)
     }
 
-    getDetails(movieId) {
-        return this.api.get(`/Top250Movies/k_u3ip6m56${movieId}`).then(response => response.data.items)
+    getMovieById(movieId) {
+        return this.api.get(`/Title/k_t1dvkm4d${movieId}`).then(response => response.data.items)
     }
 
 
