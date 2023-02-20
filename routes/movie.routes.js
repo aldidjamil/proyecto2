@@ -7,10 +7,34 @@ const ApiServiceTheaters = require('../services/movies.service')
 const moviesApi = new ApiServiceTheaters()
 
 
-/* GET home page */
+
 router.get("/", (req, res, next) => {
     res.render("index");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router.get("/list-theaters", (req, res, next) => {
 
@@ -18,7 +42,7 @@ router.get("/", (req, res, next) => {
 //     // res.send('Hola'))
 //     moviesApi
 //         .getAllMovies()
-//         // .then(response => res.render("movies/list-thaeaters", { movie: response.data }))
+//         // .then(response => res.render("movies/list-theaters", { movie: response.data }))
 //         .then(response => console.log(response))
 
 //         // .then(response => console.log(response))

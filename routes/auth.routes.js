@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
-
+const { isLoggedOut } = require('../middleware/route-guard')
 
 const User = require('../models/User.model')
 
@@ -25,7 +25,7 @@ router.post("/create-form", (req, res, next) => {
 
 })
 
-router.get("/login-form", (req, res, next) => {
+router.get("/login-form", isLoggedOut, (req, res, next) => {
     res.render('auth/login-form')
 })
 
@@ -58,6 +58,8 @@ router.post("/login-form", (req, res, next) => {
 router.get('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/'))
 })
+
+
 
 
 
