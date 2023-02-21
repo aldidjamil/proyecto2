@@ -64,3 +64,8 @@ li {
   padding-left: 50px;
   display: flex;
 }
+
+.container img {
+  width: 100%;
+  height: auto;
+}
