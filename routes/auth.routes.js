@@ -30,7 +30,7 @@ router.get("/login-form", isLoggedOut, (req, res, next) => {
 })
 
 router.post("/login-form", (req, res, next) => {
-    console.log('hola')
+
 
     const { email, password } = req.body
     if (email.length === 0 || password.length === 0) {

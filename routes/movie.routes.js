@@ -68,8 +68,10 @@ router.get('/details/:id', (req, res) => {
     moviesApi
         .getMovieById(id)
         //.then(movie => console.log({ movie }))
-        .then(movie => res.render('movies/details', { movie }))
+        .then(movie => { res.render('movies/details', { movie }) })
         .catch(err => next(err))
 })
+
+
 
 module.exports = router;

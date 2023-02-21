@@ -6,13 +6,13 @@
         <div class="card-body">
             <h5 class="card-title">{{user.username}}</h5>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Favorite Movies: {{user.favoriteMovies}}</li>
-            <li class="list-group-item">watchList: {{user.watchList}}</li>
+
+        <li class="list-group-item">watchList: {{user.watchList}}</li>
         </ul>
         <div class="card-footer mt-2">
             <small class="text-muted mt-2">Member since: {{user.createdAt}}</small>
         </div>
+
 
         <div class="card-buttons mt-2 text-center">
             <a href="/user/edit/{{user._id}}" class="btn btn-dark mt-2">EDIT</a>

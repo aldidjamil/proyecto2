@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { isLoggedIn, checkRole } = require('../middleware/route-guard')
-
+const axios = require("axios");
 const User = require('../models/User.model')
+const ApiServiceTheaters = require('../services/movies.service')
 
+const moviesApi = new ApiServiceTheaters()
 
 
 router.get("/list-users", isLoggedIn, checkRole('USER', 'ADMIN'), (req, res, next) => {
@@ -54,7 +56,26 @@ router.post('/delete/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
 
-    res.render("user/profile", { user: req.session.currentUser })
+    const favoriteMovies = req.session.currentUser.favoriteMovies.map(elm => {
+        return moviesApi.getMovieById(elm)
+    })
+
+    Promise
+        .all(favoriteMovies)
+        .then((favMovies) => {
+            res.render("user/profile", { user: req.session.currentUser, favMovies })
+        })
+})
+
+router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
+
+    const { movieId } = req.params
+    const userId = req.session.currentUser?._id
+
+    User
+        .findByIdAndUpdate(userId, { $addToSet: { favoriteMovies: movieId } })
+        .then(() => res.redirect('/user/profile'))
+        .catch(err => next(err))
 })
 
 

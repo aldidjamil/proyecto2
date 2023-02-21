@@ -15,7 +15,9 @@
     <p>Countries: {{movie.countries}}</p>
     <hr>
 
-
-    <a href="/" class="btn btn-dark">Return to index</a>
+    <form action="/user/add_favorite/{{movie.id}}" method="POST">
+        <input type="submit" value="Add to favorite" class="btn btn-primary mt-3">
+    </form>
+    <a href="/" class="btn btn-dark mt-3">Return to index</a>
 
 </div>

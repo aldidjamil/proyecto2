@@ -19,10 +19,7 @@ const userSchema = new Schema(
       type: String,
       default: 'https://i.stack.imgur.com/l60Hf.png'
     },
-    favoriteMovies: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Movie'
-    }],
+    favoriteMovies: [String],
     watchList: [{
       type: Schema.Types.ObjectId,
       ref: 'Movie'

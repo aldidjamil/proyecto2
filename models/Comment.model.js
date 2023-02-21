@@ -6,6 +6,7 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId
     },
     comment: { type: String },
+    movieId: { type: String }
   },
   {
     timestamps: true
