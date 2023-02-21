@@ -77,7 +77,15 @@ router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
         .then(() => res.redirect('/user/profile'))
         .catch(err => next(err))
 })
+router.post('/delete/favMovie:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    const userId = req.session.currentUser?._id
 
+    User
+        .findByIdAndDelete(userId, { $addToSet: { favoriteMovies: id } })
+        .then(() => res.redirect('/user/profile'))
+        .catch(err => next(err))
+})
 
 module.exports = router;
 

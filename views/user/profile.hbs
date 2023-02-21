@@ -6,9 +6,6 @@
         <div class="card-body">
             <h5 class="card-title">{{user.username}}</h5>
         </div>
-
-        <li class="list-group-item">watchList: {{user.watchList}}</li>
-        </ul>
         <div class="card-footer mt-2">
             <small class="text-muted mt-2">Member since: {{user.createdAt}}</small>
         </div>
@@ -21,4 +18,22 @@
         </div>
     </div>
 
+</div>
+<div class="container">
+
+
+    <ul>
+        <li class="list-group-item">watchList: {{user.watchList}}</li>
+        <li class="list-group-item">favorites movie: {{#each favMovies}} <img src="{{image}}" alt="">{{/each}}</li>
+        <form action="/movie/delete/{{favMovies.id}}" method="POST">
+            <input type="submit" value="DELETE" class="btn btn-danger mt-2">
+    </ul>
+
+</div>
+
+
+
+
+
+</div>
 </div>
