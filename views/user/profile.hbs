@@ -6,6 +6,7 @@
         <div class="card-body">
             <h5 class="card-title">{{user.username}}</h5>
         </div>
+        <li class="list-group-item">Favorite Movies:{{#each favMovies}} <img src="{{image}}" alt=""> {{/each}}</li>
 
         <li class="list-group-item">watchList: {{user.watchList}}</li>
         </ul>

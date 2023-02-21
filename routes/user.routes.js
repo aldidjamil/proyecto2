@@ -64,6 +64,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         .all(favoriteMovies)
         .then((favMovies) => {
             res.render("user/profile", { user: req.session.currentUser, favMovies })
+            console.log(req.session.currentUser)
         })
 })
 
@@ -73,8 +74,13 @@ router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
     const userId = req.session.currentUser?._id
 
     User
-        .findByIdAndUpdate(userId, { $addToSet: { favoriteMovies: movieId } })
-        .then(() => res.redirect('/user/profile'))
+        .findByIdAndUpdate(userId, { $addToSet: { favoriteMovies: movieId } }, { new: true })
+        .then((newUser) => {
+            req.session.currentUser = newUser
+            console.log(newUser)
+            res.redirect('/user/profile')
+
+        })
         .catch(err => next(err))
 })
 
