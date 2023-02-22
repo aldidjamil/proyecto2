@@ -9,18 +9,36 @@ const moviesApi = new ApiServiceTheaters()
 
 
 router.get("/list-users", isLoggedIn, checkRole('USER', 'ADMIN'), (req, res, next) => {
+    const { id } = req.params
+    const promises = [moviesApi.getMovieById(id), User.find({ movieId: id })]
+    console.log(req.params)
 
-    User
+    Promise
+        .all(promises)
+        .then(([movie, user]) => {
 
-        .find()
-        .then(users => {
+            console.log(user)
             res.render('user/list', {
-                users: users,
+                user: user,
+                movie: movie,
                 isAdmin: req.session.currentUser?.role === 'ADMIN',
                 isUser: req.session.currentUser?.role === 'USER'
             })
         })
         .catch(err => next(err))
+
+    // User
+
+    //     .find()
+    //     .then(users => {
+    //         console.log(users)
+    //         res.render('user/list', {
+    //             users: users,
+    //             isAdmin: req.session.currentUser?.role === 'ADMIN',
+    //             isUser: req.session.currentUser?.role === 'USER'
+    //         })
+    //     })
+    //     .catch(err => next(err))
 
 })
 
@@ -59,34 +77,73 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
     const favoriteMovies = req.session.currentUser.favoriteMovies.map(elm => {
         return moviesApi.getMovieById(elm)
     })
+    const watchList = req.session.currentUser.watchList.map(elm => {
+        console.log(elm)
+        return moviesApi.getMovieById(elm)
+
+    })
+
+    const promises = [favoriteMovies, watchList]
 
     Promise
-        .all(favoriteMovies)
-        .then((favMovies) => {
-            res.render("user/profile", { user: req.session.currentUser, favMovies })
-            console.log(req.session.currentUser)
-
+        .all(promises.map(elm => Promise.all(elm)))
+        .then(([favMovies, watchList]) => {
+            console.log(favMovies)
+            console.log(watchList)
+            res.render("user/profile", { user: req.session.currentUser, favMovies, watchList })
+            // console.log(req.session.currentUser)
         })
-        .catch(err => next(err))
+
+
+
+
 })
 
-router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
+router.post('/addMovie/:action/:movieId', isLoggedIn, (req, res, next) => {
 
-    const { movieId } = req.params
+    const { action, movieId } = req.params
     const userId = req.session.currentUser?._id
 
+    const query = action === 'addFav' ? { favoriteMovies: movieId } : { watchList: movieId }
+
     User
-        .findByIdAndUpdate(userId, { $addToSet: { favoriteMovies: movieId } }, { new: true })
+        .findByIdAndUpdate(userId, { $addToSet: query }, { new: true })
         .then((newUser) => {
             req.session.currentUser = newUser
-            console.log(newUser)
+            // console.log(newUser)
             res.redirect('/user/profile')
-
         })
         .catch(err => next(err))
 })
 
+router.post('/deleteMovie/:action/:movieId', isLoggedIn, (req, res, next) => {
+    const { action, movieId } = req.params
+    const userId = req.session.currentUser?._id
+    console.log(req.params)
 
+
+
+    const query = action === 'delFav' ? { favoriteMovies: movieId } : { watchList: movieId }
+
+    User
+        .findByIdAndUpdate(userId, { $pull: query }, { new: true })
+        .then((newUser) => {
+            req.session.currentUser = newUser
+            res.redirect('/user/profile')
+        })
+        .catch(err => next(err))
+
+
+})
+// router.post('/delete/favMovie:id', isLoggedIn, (req, res, next) => {
+//     const { id } = req.params
+//     const userId = req.session.currentUser?._id
+
+//     User
+//         .findByIdAndDelete(userId, { $addToSet: { favoriteMovies: id } })
+//         .then(() => res.redirect('/user/profile'))
+//         .catch(err => next(err))
+// })
 
 module.exports = router;
 

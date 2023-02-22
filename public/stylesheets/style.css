@@ -59,10 +59,9 @@ li {
 
 }
 
-.imgMov {
-  width: 300px;
-  padding-left: 50px;
-  display: flex;
+.imgMov img {
+  width: 100%;
+  height: auto;
 }
 
 .container img {

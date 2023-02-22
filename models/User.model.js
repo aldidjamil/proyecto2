@@ -20,10 +20,7 @@ const userSchema = new Schema(
       default: 'https://i.stack.imgur.com/l60Hf.png'
     },
     favoriteMovies: [String],
-    watchList: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Movie'
-    }],
+    watchList: [String],
     role: {
       type: String,
       enum: ['USER', 'ADMIN'],

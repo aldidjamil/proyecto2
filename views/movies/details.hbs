@@ -15,8 +15,11 @@
     <p>Countries: {{movie.countries}}</p>
     <hr>
 
-    <form action="/user/add_favorite/{{movie.id}}" method="POST">
-        <input type="submit" value="Add to favorite" class="btn btn-primary mt-2">
+    <form action="/user/addMovie/{{movie.id}}" method="POST">
+        <input type="submit" formaction="/user/addMovie/addFav/{{movie.id}}" value="Add to favorite"
+            class="btn btn-primary mt-3">
+        <input type="submit" formaction="/user/addMovie/addWat/{{movie.id}}" value="Add to Watch"
+            class="btn btn-primary mt-3">
     </form>
     <form action="/user/add_favorite/{{movie.id}}" method="POST">
         <input type="submit" value="Add to wathlist" class="btn btn-primary mt-2">
