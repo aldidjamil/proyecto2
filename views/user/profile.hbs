@@ -8,7 +8,7 @@
         </div>
         <li class="list-group-item">Favorite Movies:{{#each favMovies}} <img src="{{image}}" alt=""> {{/each}}</li>
 
-        <li class="list-group-item">watchList: {{user.watchList}}</li>
+        <li class="list-group-item">watchList: <img src="{{image}}" alt=""> </li>
         </ul>
         <div class="card-footer mt-2">
             <small class="text-muted mt-2">Member since: {{user.createdAt}}</small>
@@ -19,6 +19,7 @@
             <a href="/user/edit/{{user._id}}" class="btn btn-dark mt-2">EDIT</a>
             <form action="/user/delete/{{user.id}}" method="POST">
                 <input type="submit" value="DELETE" class="btn btn-danger mt-2">
+            </form>
         </div>
     </div>
 
@@ -31,6 +32,7 @@
         <li class="list-group-item">favorites movie: {{#each favMovies}} <img src="{{image}}" alt="">{{/each}}</li>
         <form action="/movie/delete/{{favMovies.id}}" method="POST">
             <input type="submit" value="DELETE" class="btn btn-danger mt-2">
+        </form>
     </ul>
 
 </div>

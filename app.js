@@ -39,6 +39,8 @@ app.use("/", authRoutes)
 const movieRoutes = require('./routes/movie.routes')
 app.use("/movie", movieRoutes)
 
+const commentsRoutes = require('./routes/comment.routes')
+app.use("/comment", commentsRoutes)
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

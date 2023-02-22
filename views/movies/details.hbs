@@ -16,8 +16,28 @@
     <hr>
 
     <form action="/user/add_favorite/{{movie.id}}" method="POST">
-        <input type="submit" value="Add to favorite" class="btn btn-primary mt-3">
+        <input type="submit" value="Add to favorite" class="btn btn-primary mt-2">
     </form>
-    <a href="/" class="btn btn-dark mt-3">Return to index</a>
+    <form action="/user/add_favorite/{{movie.id}}" method="POST">
+        <input type="submit" value="Add to wathlist" class="btn btn-primary mt-2">
+    </form>
+    <a href="/" class="btn btn-dark mt-2">Return to index</a>
+</div>
+<div class="container">
+    {{#each comments}}
+    <p>{{comment}}</p>
+    <form action="/comment/delete/{{id}}/{{../movie.id}}" method="POST">
+        <input type="submit" value="DELETE" class="btn btn-danger mt-2">
+    </form>
+    {{/each}}
 
+    <form action="/comment/createcomment" method="POST">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Coments</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></textarea>
+        </div>
+        <input type="hidden" name="movieId" value="{{movie.id}}">
+        <input type="submit" value="Send comment" class="btn btn-primary mt-2">
+
+    </form>
 </div>

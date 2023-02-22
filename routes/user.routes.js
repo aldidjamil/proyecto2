@@ -4,7 +4,7 @@ const { isLoggedIn, checkRole } = require('../middleware/route-guard')
 const axios = require("axios");
 const User = require('../models/User.model')
 const ApiServiceTheaters = require('../services/movies.service')
-
+const Movie = ('../models/Movie.model')
 const moviesApi = new ApiServiceTheaters()
 
 
@@ -65,7 +65,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         .then((favMovies) => {
             res.render("user/profile", { user: req.session.currentUser, favMovies })
             console.log(req.session.currentUser)
+
         })
+        .catch(err => next(err))
 })
 
 router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
@@ -83,15 +85,8 @@ router.post('/add_favorite/:movieId', isLoggedIn, (req, res, next) => {
         })
         .catch(err => next(err))
 })
-router.post('/delete/favMovie:id', isLoggedIn, (req, res, next) => {
-    const { id } = req.params
-    const userId = req.session.currentUser?._id
 
-    User
-        .findByIdAndDelete(userId, { $addToSet: { favoriteMovies: id } })
-        .then(() => res.redirect('/user/profile'))
-        .catch(err => next(err))
-})
+
 
 module.exports = router;
 
