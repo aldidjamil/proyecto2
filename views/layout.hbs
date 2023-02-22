@@ -13,7 +13,7 @@
 <body>
    {{!-- <div class="container"> --}}
 
-      <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-lightsalmon bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-lightsalmon bg-body-tertiary mt-4">
          <div class="container-fluid">
             <a class="navbar-brand" href="/">MAIN PAGE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -45,7 +45,7 @@
 
 
 
-
+               {{#unless currentUser}}
                <form class="d-flex" role="search">
                   <li class="nav-item">
                      <a class="nav-link" href="/login-form">Log in</a>
@@ -53,6 +53,7 @@
                   <li class="nav-item">
                      <a class="nav-link" href="/create-form">Sign up</a>
                   </li>
+                  {{/unless}}
                   {{!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button> --}}
                   <li class="nav-item dropdown">

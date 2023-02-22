@@ -17,12 +17,17 @@ router.post("/create-form", uploaderMiddleware.single('avatar'), (req, res, next
 
     const { password } = req.body
     const { path: avatar } = req.file
+    console.log(req.file)
+
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
         .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, avatar }))
-        .then(createdUser => res.redirect('/'))
+        .then(createdUser => {
+            console.log(createdUser)
+            res.redirect('/')
+        })
         .catch(err => next(err))
 
 })
