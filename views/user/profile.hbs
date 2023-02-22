@@ -6,31 +6,37 @@
         <div class="card-body">
             <h5 class="card-title">{{user.username}}</h5>
         </div>
-        <li class="list-group-item">Favorite Movies:{{#each favMovies}} <img src="{{image}}" alt=""> {{/each}}</li>
-
-        <li class="list-group-item">watchList: {{#each watch}} <img src="{{image}}" alt="">{{/each}}</li>
-        </ul>
         <div class="card-footer mt-2">
             <small class="text-muted mt-2">Member since: {{user.createdAt}}</small>
         </div>
-
-
         <div class="card-buttons mt-2 text-center">
             <a href="/user/edit/{{user._id}}" class="btn btn-dark mt-2">EDIT</a>
             <form action="/user/delete/{{user.id}}" method="POST">
                 <input type="submit" value="DELETE" class="btn btn-danger mt-2">
         </div>
+
+
+
     </div>
 
 </div>
 <div class="container">
 
-
     <ul>
-        <li class="list-group-item">watchList: {{user.watchList}}</li>
-        <li class="list-group-item">favorites movie: {{#each favMovies}} <img src="{{image}}" alt="">{{/each}}</li>
-        <form action="/movie/delete/{{favMovies.id}}" method="POST">
-            <input type="submit" value="DELETE" class="btn btn-danger mt-2">
+        <div class="card" style="width: 18rem;">
+            <form action="/user/deleteMovie/{{movie.id}}" method="POST">
+                <li class="list-group-item">watchList: {{#each watchList}} <img src="{{image}}" alt=""> </li>
+                <input type="submit" formaction="/user/deleteMovie/delWat/{{id}}" value="DELETE"
+                    class="btn btn-danger mt-2">
+                <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+                {{/each}}
+                <li class="list-group-item">favorites movie: {{#each favMovies}} <img src="{{image}}" alt=""></li>
+                <input type="submit" formaction="/user/deleteMovie/delFav/{{id}}" value="DELETE"
+                    class="btn btn-danger mt-2">
+                <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+
+                {{/each}}
+
     </ul>
 
 </div>

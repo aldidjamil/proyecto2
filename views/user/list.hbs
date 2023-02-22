@@ -1,23 +1,29 @@
 <div class="container">
 
-    {{#each users}}
+    {{#each user}}
 
 
     <div class="card mt-5" style="width: 18rem;">
         <img src="{{avatar}}" class="card-img-top adjust-center" alt="...">
         <div class="card-body">
-            <h6 class="card-text">User_ID: {{id}}</h6>
             <h3 class="card-text">Username:{{username}}</h3>
-            <h5 class="card-text">e-mail: {{email}}</h5>
             {{#if ../isAdmin}}
             <h5 class="card-text">ROLE: {{role}}</h5>
             <div class="card-buttons mt-2 text-center">
                 <a href="/user/edit/{{id}}" class="btn btn-info">TURN ADMIN</a>
             </div>
-
+            {{/if}}
             <div class="card-footer mt-2">
                 <small class="text-muted mt-2">Member since: {{createdAt}}</small>
             </div>
+            <img src="{{movie.image}}" alt="">
+            <p>{{movie.image}}</p>
+
+            <h3 class="card-img">Favorite Movies: <img src="{{movie.image}}" alt=""></h3>
+            <h3 class="card-img">Watch List:{{watchList}}</h3>
+
+
+            {{#if ../isAdmin}}
 
             <div class="card-buttons mt-2 text-center">
                 <a href="/user/edit/{{id}}" class="btn btn-dark mt-2">EDIT</a>
@@ -26,9 +32,35 @@
                 </form>
             </div>
             {{/if}}
+
+
+
         </div>
     </div>
     {{/each}}
 
+    {{!-- <div class="container">
 
-</div>
+        <ul>
+
+            {{#each movie}}
+            <div class="card" style="width: 18rem;">
+                <form action="/movie/delete/{{favMovies.id}}" method="POST">
+                    <li class="list-group-item">watchList: <img src="{{image}}" alt=""> </li>
+                    <input type="submit" formaction="/user/addMovie/addFav/{{movie.id}}" value="DELETE"
+                        class="btn btn-danger mt-2">
+                    <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+
+                    <li class="list-group-item">favorites movie:<img src="{{image}}" alt=""></li>
+                    <input type="submit" formaction="/user/addMovie/addFav/{{movie.id}}" value="DELETE"
+                        class="btn btn-danger mt-2">
+                    <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+
+                    {{/each}}
+
+        </ul>
+
+    </div>
+
+
+</div> --}}
