@@ -7,7 +7,6 @@ const uploaderMiddleware = require('../middleware/uploader.middleware')
 
 const User = require('../models/User.model')
 
-/* GET home page */
 router.get("/create-form", isLoggedOut, (req, res, next) => {
     res.render('auth/create-form')
 
