@@ -52,7 +52,6 @@ router.post("/login-form", (req, res, next) => {
             }
             else {
                 req.session.currentUser = user
-                console.log('ESTO ES EL OBJETO req.session --->', req.session)
                 res.redirect('/')
             }
         })

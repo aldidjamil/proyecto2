@@ -10,9 +10,12 @@
             {{#if ../isAdmin}}
             <h5 class="card-text">ROLE: {{role}}</h5>
             <div class="card-buttons mt-2 text-center">
-                <a href="/user/edit/{{id}}" class="btn btn-info">TURN ADMIN</a>
+                <form action="/user/ADMIN/edit_role/{{id}}" method="POST">
+                    <input type="submit" value="Mark as ADMIN" class="btn btn-danger btn-sm">
+                </form>
+
                 {{/if}}
-                <a href="/user/profile/{{id}}" class="btn btn-info mt-2">GO TO USER PROFILE</a>
+                <a href="/user/profile/{{currentUser.id}}" class="btn btn-info mt-2">GO TO USER PROFILE</a>
                 {{#if ../isAdmin}}
             </div>
 

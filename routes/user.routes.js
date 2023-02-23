@@ -81,8 +81,44 @@ router.get("/profile/:id", isLoggedIn, (req, res, next) => {
         })
         .catch(err => next(err))
 })
+router.get('/user', isLoggedIn, (req, res) => {
 
+    User
+        .find({ role: 'USER' })
+        .then(users => {
+            res.render('user/users', {
+                users,
+                isUSER: req.session.currentUser?.role === 'USER',
+                isADMIN: req.session.currentUser?.role === 'ADMIN'
+            })
+        })
+        .catch(err => next(err))
+})
 
+router.get('/admin', isLoggedIn, (req, res) => {
+
+    User
+        .find({ role: ['USER', 'ADMIN'] })
+        .then(users => {
+            res.render('user/admin', {
+                users,
+                isUSER: req.session.currentUser?.role === 'USER',
+                isADMIN: req.session.currentUser?.role === ' ADMIN'
+            })
+        })
+        .catch(err => next(err))
+})
+
+router.post('/:role/edit_role/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+
+    const { role, id } = req.params
+
+    User
+        .findByIdAndUpdate(id, { role })
+        .then(() => res.redirect(`/user/list-users`))
+        .catch(err => next(err))
+
+})
 router.post('/addMovie/:action/:movieId', isLoggedIn, (req, res, next) => {
 
     const { action, movieId } = req.params
