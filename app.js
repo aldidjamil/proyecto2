@@ -10,6 +10,7 @@ require('./config/session.config')(app)
 
 app.locals.appTitle = `SERVIDORES`;
 
+
 require('./routes')(app)
 require("./error-handling")(app);
 
