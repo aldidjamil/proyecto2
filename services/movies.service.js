@@ -1,6 +1,3 @@
-// // https://imdb-api.com/en/API/InTheaters/k_t1dvkm4d
-
-
 const axios = require('axios')
 
 class ApiServiceTheaters {
@@ -30,8 +27,6 @@ class ApiServiceTheaters {
     getMovieById(movieId) {
         return this.api.get(`/Title/${process.env.API_KEY}/${movieId}`).then(response => response.data)
     }
-
-
-
 }
+
 module.exports = ApiServiceTheaters

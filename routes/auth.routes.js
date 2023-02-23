@@ -17,24 +17,13 @@ router.post("/create-form", uploaderMiddleware.single('avatar'), (req, res, next
 
     const { password } = req.body
 
-    let profileImg = undefined
-
-
-    if (req.file) {
-        const { path: avatar } = req.file
-        console.log("LA imagen es esta ===>", avatar)
-        profileImg = avatar
-    }
-
-
-
+    let profileImg = req.file ? req.file.path : undefined
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
         .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, avatar: profileImg }))
         .then(createdUser => {
-            console.log(createdUser)
             res.redirect('/')
         })
         .catch(err => next(err))
@@ -46,7 +35,6 @@ router.get("/login-form", isLoggedOut, (req, res, next) => {
 })
 
 router.post("/login-form", (req, res, next) => {
-
 
     const { email, password } = req.body
     if (email.length === 0 || password.length === 0) {
@@ -74,11 +62,6 @@ router.post("/login-form", (req, res, next) => {
 router.get('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/'))
 })
-
-
-
-
-
 
 
 
