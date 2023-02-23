@@ -6,24 +6,15 @@
     <div class="card mt-5" style="width: 18rem;">
         <img src="{{avatar}}" class="card-img-top adjust-center" alt="...">
         <div class="card-body">
-            <h3 class="card-text">Username:{{username}}</h3>
+            <h3 class="card-text">{{username}}</h3>
             {{#if ../isAdmin}}
             <h5 class="card-text">ROLE: {{role}}</h5>
             <div class="card-buttons mt-2 text-center">
                 <a href="/user/edit/{{id}}" class="btn btn-info">TURN ADMIN</a>
+                {{/if}}
+                <a href="/user/profile/{{id}}" class="btn btn-info mt-2">GO TO USER PROFILE</a>
+                {{#if ../isAdmin}}
             </div>
-            {{/if}}
-            <div class="card-footer mt-2">
-                <small class="text-muted mt-2">Member since: {{createdAt}}</small>
-            </div>
-            <img src="{{movie.image}}" alt="">
-            <p>{{movie.image}}</p>
-
-            <h3 class="card-img">Favorite Movies: <img src="{{movie.image}}" alt=""></h3>
-            <h3 class="card-img">Watch List:{{watchList}}</h3>
-
-
-            {{#if ../isAdmin}}
 
             <div class="card-buttons mt-2 text-center">
                 <a href="/user/edit/{{id}}" class="btn btn-dark mt-2">EDIT</a>
