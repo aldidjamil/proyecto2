@@ -18,12 +18,11 @@ router.get("/250-movies", (req, res, next) => {
     moviesApi
         .getAllMovies()
         .then(movies => {
-            console.log("LAS MOVIES", movies)
             res.render("movies/movieRender", { movies })
         })
-
         .catch(err => next(err))
 })
+
 
 router.get("/inTheaters", (req, res, next) => {
 
@@ -35,41 +34,42 @@ router.get("/inTheaters", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/mostPopular", (req, res, next) => {
 
+router.get("/mostPopular", (req, res, next) => {
 
     moviesApi
         .getMostPopular()
         .then(movies => {
-
             res.render("movies/movieRender", { movies })
         })
-
+        .catch(err => next(err))
 })
+
 
 router.get("/comingSoon", (req, res, next) => {
 
     moviesApi
         .getComingSoon()
         .then(movies => {
-
             res.render("movies/movieRender", { movies })
-        })
-})
-
-
-router.get('/details/:id', (req, res) => {
-    const { id } = req.params
-    const promises = [moviesApi.getMovieById(id), Comment.find({ movieId: id })]
-
-    Promise
-        .all(promises)
-        .then(([movie, comments]) => {
-            res.render('movies/details', { user: req.session.currentUser, movie, comments })
         })
         .catch(err => next(err))
 })
 
 
+router.get('/details/:id', isLoggedIn, (req, res) => {
 
-module.exports = router;
+    const { id } = req.params
+    const promises = [moviesApi.getMovieById(id), Comment.find({ movieId: id })]
+    const { currentUser: user } = req.session
+
+    Promise
+        .all(promises)
+        .then(([movie, comments]) => {
+            res.render('movies/details', { user, movie, comments })
+        })
+        .catch(err => next(err))
+})
+
+
+module.exports = router
