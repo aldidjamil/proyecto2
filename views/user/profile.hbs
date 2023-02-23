@@ -26,17 +26,21 @@
     <ul>
         <div class="card" style="width: 18rem;">
             <form action="/user/deleteMovie/{{movie.id}}" method="POST">
-                <li class="list-group-item">watchList: {{#each watchList}} <img src="{{image}}" alt=""> </li>
+                <li class="list-group-item ">watchList: {{#each watchList}} <img class="rounded float-start"
+                        src="{{image}}" alt=""> </li>
                 <input type="submit" formaction="/user/deleteMovie/delWat/{{id}}" value="DELETE"
-                    class="btn btn-danger mt-2">
-                <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+                    class="btn btn-danger mt-4">
+                <a class="text-center" href="/movie/details/{{id}}"> GET MOVIE DETAILS </a>
                 {{/each}}
-                <li class="list-group-item">favorites movie: {{#each favMovies}} <img src="{{image}}" alt=""></li>
+                <li class="list-group-item">favorites movie: {{#each favMovies}} <img class="rounded float-start"
+                        src="{{image}}" alt=""></li>
                 <input type="submit" formaction="/user/deleteMovie/delFav/{{id}}" value="DELETE"
-                    class="btn btn-danger mt-2">
-                <a class="text-center" href="/movie/details/{{movie.id}}"> GET MOVIE DETAILS </a>
+                    class="btn btn-danger mt-4">
+                <a class="text-center" href="/movie/details/{{id}}"> GET MOVIE DETAILS </a>
 
                 {{/each}}
+            </form>
+        </div>
 
     </ul>
 

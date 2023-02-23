@@ -16,14 +16,23 @@ router.get("/create-form", (req, res, next) => {
 router.post("/create-form", uploaderMiddleware.single('avatar'), (req, res, next) => {
 
     const { password } = req.body
-    const { path: avatar } = req.file
-    console.log(req.file)
+
+    let profileImg = undefined
+
+
+    if (req.file) {
+        const { path: avatar } = req.file
+        console.log("LA imagen es esta ===>", avatar)
+        profileImg = avatar
+    }
+
+
 
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, avatar }))
+        .then(hashedPassword => User.create({ ...req.body, password: hashedPassword, avatar: profileImg }))
         .then(createdUser => {
             console.log(createdUser)
             res.redirect('/')

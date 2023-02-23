@@ -83,6 +83,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 
     })
 
+
     const promises = [favoriteMovies, watchList]
 
     Promise
@@ -91,10 +92,8 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
             console.log(favMovies)
             console.log(watchList)
             res.render("user/profile", { user: req.session.currentUser, favMovies, watchList })
-            // console.log(req.session.currentUser)
+
         })
-
-
 
 
 })
@@ -135,6 +134,18 @@ router.post('/deleteMovie/:action/:movieId', isLoggedIn, (req, res, next) => {
 
 
 })
+
+// router.get('/details/:action/:movieId', (req, res, next) => {
+//     const { action, movieId } = req.params
+//     const userId = req.session.currentUser?._id
+
+//     const query = action === 'detFav' ? { favoriteMovies: movieId } : { watchList: movieId }
+
+//     User
+//         .findById
+
+
+// })
 // router.post('/delete/favMovie:id', isLoggedIn, (req, res, next) => {
 //     const { id } = req.params
 //     const userId = req.session.currentUser?._id
