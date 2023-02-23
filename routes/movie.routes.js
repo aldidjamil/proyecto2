@@ -15,12 +15,10 @@ router.get("/", (req, res, next) => {
 
 router.get("/250-movies", (req, res, next) => {
 
-
-
     moviesApi
         .getAllMovies()
         .then(movies => {
-
+            console.log("LAS MOVIES", movies)
             res.render("movies/movieRender", { movies })
         })
 

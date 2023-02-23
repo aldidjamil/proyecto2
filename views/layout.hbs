@@ -42,7 +42,7 @@
 
 
 
-               {{#unless currentUser}}
+               {{!-- {{#unless currentUser}} --}}
                <form class="d-flex" role="search">
                   <li class="nav-item">
                      <a class="nav-link" href="/login-form">Log in</a>
@@ -50,21 +50,23 @@
                   <li class="nav-item">
                      <a class="nav-link" href="/create-form">Sign up</a>
                   </li>
-                  {{/unless}}
+                  {{!-- {{/unless}} --}}
                   {{!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success" type="submit">Search</button> --}}
                   <li class="nav-item dropdown">
+                     {{!-- {{#if currentUser}} --}}
                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        User
+
                      </a>
                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/user/profile">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/profile/{{currentUser.id}}">My Profile</a></li>
                         <li>
                            <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="/logout">Log out</a></li>
                      </ul>
+                     {{!-- {{/if}} --}}
                   </li>
                </form>
             </div>
