@@ -2,8 +2,8 @@
 
     <div class="row">
 
-        {{#each movies}}
-        <div class="col-4">
+        <div class="col-sm">
+            {{#each movies}}
             <div class="card mt-5" style="width: 18rem;">
                 <img src="{{image}}" class="card-img-top adjust-center" alt="...">
                 <div class="card-body text center">
@@ -12,7 +12,10 @@
 
                 </div>
             </div>
-            {{/each}}
         </div>
     </div>
+    {{/each}}
 </div>
+
+{{!-- <div class="row">
+    <div class="col-sm">col-sm</div> --}}

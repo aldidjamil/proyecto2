@@ -110,7 +110,7 @@ router.post('/deleteMovie/:action/:movieId', isLoggedIn, (req, res, next) => {
         .findByIdAndUpdate(userId, { $pull: query }, { new: true })
         .then((newUser) => {
             req.session.currentUser = newUser
-            res.redirect('/user/profile')
+            res.redirect('/user/list-users')
         })
         .catch(err => next(err))
 })
