@@ -34,29 +34,7 @@ router.get("/login-form", isLoggedOut, (req, res, next) => {
     res.render('auth/login-form')
 })
 
-router.post("/login-form", (req, res, next) => {
 
-    const { email, password } = req.body
-    if (email.length === 0 || password.length === 0) {
-        res.render('auth/login-form', { errorMessage: 'Por favor, rellena los campos' })
-        return
-    }
-    User
-        .findOne({ email })
-        .then(user => {
-            if (!user) {
-                res.render('auth/login-form', { errorMessage: 'Usuario no registrado' })
-            }
-            else if (!bcrypt.compareSync(password, user.password)) {
-                res.render('auth/login-form', { errorMessage: 'Datos incorrectos (es la pwd...)' })
-            }
-            else {
-                req.session.currentUser = user
-                res.redirect('/')
-            }
-        })
-        .catch(err => next(err))
-})
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/'))
@@ -64,6 +42,34 @@ router.get('/logout', (req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = (app) => {
+    router.post("/login-form", (req, res, next) => {
+
+        const { email, password } = req.body
+        if (email.length === 0 || password.length === 0) {
+            res.render('auth/login-form', { errorMessage: 'Por favor, rellena los campos' })
+            return
+        }
+        User
+            .findOne({ email })
+            .then(user => {
+                if (!user) {
+                    res.render('auth/login-form', { errorMessage: 'Usuario no registrado' })
+                }
+                else if (!bcrypt.compareSync(password, user.password)) {
+                    res.render('auth/login-form', { errorMessage: 'Datos incorrectos (es la pwd...)' })
+                }
+                else {
+                    req.session.currentUser = user
+                    app.locals.currentUser = user._id
+
+                    res.redirect('/')
+                }
+            })
+            .catch(err => next(err))
+    })
+    return router
+
+}
 
 

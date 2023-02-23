@@ -5,7 +5,7 @@ module.exports = app => {
     const userRoutes = require('./user.routes')
     app.use("/user", userRoutes)
 
-    const authRoutes = require('./auth.routes')
+    const authRoutes = require('./auth.routes')(app)
     app.use("/", authRoutes)
 
     const movieRoutes = require('./movie.routes')
