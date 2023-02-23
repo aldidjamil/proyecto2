@@ -78,7 +78,6 @@ router.get("/profile/:id", isLoggedIn, (req, res, next) => {
 
     User
 
-<<<<<<< HEAD
 
     const promises = [favoriteMovies, watchList]
 
@@ -89,29 +88,6 @@ router.get("/profile/:id", isLoggedIn, (req, res, next) => {
             console.log(watchList)
             res.render("user/profile", { user: req.session.currentUser, favMovies, watchList })
 
-=======
-        .findById(id)
-        .then(user => {
-
-            const favoriteMovies = user.favoriteMovies.map(elm => {
-                return moviesApi.getMovieById(elm)
-            })
-            const watchList = user.watchList.map(elm => {
-                // console.log(elm)
-                return moviesApi.getMovieById(elm)
-
-            })
-            const promises = [favoriteMovies, watchList]
-
-            Promise
-                .all(promises.map(elm => Promise.all(elm)))
-                .then(([favMovies, watchList]) => {
-                    // console.log(favMovies)
-                    console.log(watchList)
-                    res.render("user/profile", { user, favMovies, watchList })
-                    // console.log(req.session.currentUser)
-                })
->>>>>>> 5898e05b55731a501f7c04b54a0a26b935f00a2d
         })
         .catch(err => next(err))
 
